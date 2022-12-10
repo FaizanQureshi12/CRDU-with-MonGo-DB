@@ -15,8 +15,8 @@ app.post('/product', (req, res) => {
   const body = req.body;
   if ( //validation
     !body.name
-    && !body.price
-    && !body.description
+    || !body.price
+    || !body.description
   ) {
     res.status(400).send({
       message: 'required parameters missing'
@@ -28,7 +28,7 @@ app.post('/product', (req, res) => {
   console.log(body.description)
 
   products.push({
-    id: newDate().getTime(),
+    id: `${newDate().getTime()}`,
     name: body.name,
     price: body.price,
     description: body.description
@@ -93,10 +93,11 @@ app.put('/product/:id', (req, res) => {
 
   if ( //validation
     !body.name
-    && !body.price
-    && !body.description
+    || !body.price
+    || !body.description
   ) {
-    res.status(400).send('required parameters missing')
+    res.status(400).send(
+      {message: 'required parameters missing' })
     return
   }
   console.log(body.name)
@@ -119,7 +120,9 @@ app.put('/product/:id', (req, res) => {
     res.status(404)
     res.send('Edit fail: product not found')
   }
-  res.send('Hello Faizan Qureshi!' + new Date().toString())
+  res.send({
+    message:'Product added'
+  })
 })
 
 const __dirname = path.resolve();
