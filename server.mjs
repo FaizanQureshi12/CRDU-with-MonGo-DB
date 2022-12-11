@@ -125,9 +125,9 @@ app.put('/product/:id', (req, res) => {
   })
 })
 
-const __dirname = path.resolve();
-app.use('/', express.static(path.join(__dirname, './web/build')))
-app.use('*', express.static(path.join(__dirname, './web/build')))
+// const __dirname = path.resolve();
+// app.use('/', express.static(path.join(__dirname, './web/build')))
+// app.use('*', express.static(path.join(__dirname, './web/build')))
 
 //Ip Address From Network properties
 //http://192.168.43.166:3000

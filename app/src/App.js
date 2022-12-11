@@ -42,7 +42,6 @@ function App() {
     getAllProducts()
   },    [loadProduct])
 
-
   const myFormik = useFormik({
     initialValues: {
       productName: '',
@@ -53,21 +52,22 @@ function App() {
       yup.object({
         productName: yup
           .string('Enter your product name')
-          .required('product name is required')
-          .min(3, "please enter more then 3 characters ")
-          .max(20, "please enter within 20 characters "),
+          .required('Product name is required')
+          .min(3, "Please enter more then 3 characters ")
+          .max(20, "Please enter within 20 characters "),
 
         productPrice: yup
           .number('Enter your product price')
-          .positive("enter positive product price")
-          .required('product name is required'),
+          .positive("Enter positive product price")
+          .required('Product name is required'),
 
         productDescription: yup
           .string('Enter your product Description')
-          .required('product name is required')
-          .min(3, "please enter more then 3 characters ")
-          .max(500, "please enter within 20 characters "),
+          .required('Product name is required')
+          .min(3, "Please enter more then 3 characters ")
+          .max(500, "Please enter within 20 characters "),
       }),
+
     onSubmit: (values) => {
       console.log("values: ", values);
       axios.post(`http://localhost:5001/product`, {
@@ -84,6 +84,7 @@ function App() {
         })
     },
   });
+
   const editFormik = useFormik({
     initialValues: {
       productName: '',
@@ -109,6 +110,7 @@ function App() {
           .min(3, "please enter more then 3 characters ")
           .max(500, "please enter within 20 characters "),
       }),
+
     onSubmit: (values) => {
       console.log("values: ", values);
       axios.put(`http://localhost:5001/product/${editingProduct.id}`, {
@@ -159,9 +161,10 @@ function App() {
           onChange={myFormik.handleChange}
         />
         { (myFormik.touched.productDescription && Boolean(myFormik.errors.productDescription)) ?
-            <span style={{ color: "red" }}>{myFormik.errors.productDescription}</span>
-            :
-            null }
+            <span
+             style={{ color: "red" }}>{myFormik.errors.productDescription}
+             </span> :
+                     null }
                <br />
         <button type="submit"> Submit </button>
       </form>
@@ -170,7 +173,8 @@ function App() {
 
       <div >
         {products.map((eachProduct, i) => (
-          <div key={eachProduct.id} style={{ border: "1px solid black", padding: 10, margin: 10, borderRadius: 15 }}>
+          <div key={eachProduct.id} 
+          style={{ border: "1px solid black", padding: 10, margin: 10, borderRadius: 15 }}>
             <h2>{eachProduct.name}</h2>
             <p>{eachProduct.id}</p>
             <h5>{eachProduct.price}</h5>
