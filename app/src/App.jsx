@@ -189,6 +189,7 @@ function App() {
             }}>edit</button>
             {(isEditMode && editingProduct.id === eachProduct.id) ?
               <div>
+            
 
                 <form onSubmit={editFormik.handleSubmit}>
                   <input
@@ -228,9 +229,13 @@ function App() {
                   <button type="submit"> Submit </button>
                 </form>
             </div> : null}
+            
           </div>
+          
         ))}
+        
       </div>
+      
     </div>
   );
 }
